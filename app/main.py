@@ -1,8 +1,8 @@
-from fastapi import FastAPI,HTTPException
+from fastapi import FastAPI,HTTPException,Query
 from bson import ObjectId
 from database import db
 from models import BookCreate,BookResponse,BookUpdate,datetime
-from typing import List
+from typing import List,Optional
 
 app = FastAPI()
 
@@ -43,3 +43,20 @@ async def delete_book(id: str):
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Book not found")
     return {"message": "Book deleted"}
+
+@app.get("/api/books/search", response_model=List[BookResponse])
+async def search_books(
+    title: Optional[str] = Query(None, description="Search by book title"),
+    author: Optional[str] = Query(None, description="Search by book author"),
+    genre: Optional[str] = Query(None, description="Search by book genre"),
+):
+    filters = {}
+    if title:
+        filters["title"] = {"$regex": title, "$options": "i"}  # Case-insensitive search
+    if author:
+        filters["author"] = {"$regex": author, "$options": "i"}
+    if genre:
+        filters["genre"] = {"$regex": genre, "$options": "i"}
+
+    books = await db["books"].find(filters).to_list(50)  # Limit results to 50
+    return [{"id": str(book["_id"]), **book} for book in books]

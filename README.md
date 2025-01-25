@@ -26,10 +26,10 @@ base url : http://127.0.0.1:8000                                                
     "created_at": "2025-01-01T12:00:00",<br/>
     "updated_at": "2025-01-10T15:00:00"     <br/>
   }
-   ]          <br/>
+   ]                                                       <br/>
 <br/>     
-2. Get book details by "id" -          <br/>
-     GET /api/books/{id}               <br/>
+2. Get book details by "id" -                              <br/>
+     GET /api/books/{id}                                   <br/>
    Description: Fetch details of a specific book by its unique ID.     <br/>
                  id: The ID of the book          <br/>
    Response:          <br/>
@@ -50,9 +50,9 @@ base url : http://127.0.0.1:8000                                                
   404 Not Found-          <br/>
   {
   "detail": "Book not found"
-  } 
-<br/>
-3. Add New Book-                    <br/>
+  }                                                    <br/>
+ <br/>
+3. Add New Book-                                        <br/>
      POST /api/books               <br/>
    Description: Adds a new book to the inventory.     <br/>
    Request Body:<br/>

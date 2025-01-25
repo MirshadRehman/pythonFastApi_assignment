@@ -1,131 +1,151 @@
-Project setup instrutions -
-Download and install MongoDB, create a database "bookmanagementsystem"
-Install fastapi, uvicorn, motor & pydantic inside the folder.
-Run mongoDB and "use bookmanagementsystem"
+Project setup instrutions -                                                       <br/>
+Download and install MongoDB, create a database "bookmanagementsystem"            <br/>
+Install fastapi, uvicorn, motor & pydantic inside the folder.                     <br/>
+Run mongoDB and "use bookmanagementsystem"                                        <br/>
+<br/>
 
+Api Documentation -                                                               <br/>
 
-Api Documentation -
-
-base url : http://127.0.0.1:8000
-1. List all books- <br/>
-     GET /api/books
-   Description: Fetches a paginated list of books from the database.
-   Response: 200 OK-
+base url : http://127.0.0.1:8000                                                  <br/>
+1. List all books-                                                                <br/>
+     GET /api/books                                                               <br/>
+   Description: Fetches a paginated list of books from the database.              <br/>
+   Response: 200 OK-                                                              <br/>
+   example-                                                                       <br/>
    [
   {
-    "id": "63d0fdfd1234567890abcdef",
-    "title": "The Great Gatsby",
-    "author": "F. Scott Fitzgerald",
-    "isbn": "9783161484100",
-    "price": 10.99,
-    "quantity": 5,
-    "published_date": "1925-04-10T00:00:00",
-    "genre": "Classic",
-    "description": "A novel about the American dream.",
-    "created_at": "2025-01-01T12:00:00",
-    "updated_at": "2025-01-10T15:00:00"
+    "id": "63d0fdfd1234567890abcdef",<br/>
+    "title": "The Great Gatsby",<br/>
+    "author": "F. Scott Fitzgerald",<br/>
+    "isbn": "9783161484100",<br/>
+    "price": 10.99,<br/>
+    "quantity": 5,<br/>
+    "published_date": "1925-04-10T00:00:00",<br/>
+    "genre": "Classic",<br/>
+    "description": "A novel about the American dream.",<br/>
+    "created_at": "2025-01-01T12:00:00",<br/>
+    "updated_at": "2025-01-10T15:00:00"     <br/>
   }
-   ]
-
-2. Get book details by "id" -
-     GET /api/books/{id}
-   Description: Fetch details of a specific book by its unique ID.
-                 id: The ID of the book
-   Response:
-   200 OK-
+   ]          <br/>
+<br/>     
+2. Get book details by "id" -          <br/>
+     GET /api/books/{id}               <br/>
+   Description: Fetch details of a specific book by its unique ID.     <br/>
+                 id: The ID of the book          <br/>
+   Response:          <br/>
+   200 OK-          <br/>
    {
-  "id": "63d0fdfd1234567890abcdef",
-  "title": "The Great Gatsby",
-  "author": "F. Scott Fitzgerald",
-  "isbn": "9783161484100",
-  "price": 10.99,
-  "quantity": 5,
-  "published_date": "1925-04-10T00:00:00",
-  "genre": "Classic",
-  "description": "A novel about the American dream.",
-  "created_at": "2025-01-01T12:00:00",
-  "updated_at": "2025-01-10T15:00:00"
-  }
-  404 Not Found-
+  "id": "63d0fdfd1234567890abcdef",     <br/>
+  "title": "The Great Gatsby",     <br/>
+  "author": "F. Scott Fitzgerald",     <br/>
+  "isbn": "9783161484100",     <br/>
+  "price": 10.99,          <br/>
+  "quantity": 5,          <br/>
+  "published_date": "1925-04-10T00:00:00",     <br/>
+  "genre": "Classic",          <br/>
+  "description": "A novel about the American dream.",     <br/>
+  "created_at": "2025-01-01T12:00:00",     <br/>
+  "updated_at": "2025-01-10T15:00:00"     <br/>
+  }<br/>
+  404 Not Found-          <br/>
   {
   "detail": "Book not found"
   } 
-
-3. Add New Book-
-     POST /api/books
-   Description: Adds a new book to the inventory.
-   Request Body:
+<br/>
+3. Add New Book-                    <br/>
+     POST /api/books               <br/>
+   Description: Adds a new book to the inventory.     <br/>
+   Request Body:<br/>
      {
-      "title": "The Great Gatsby",
-      "author": "F. Scott Fitzgerald",
-      "isbn": "9783161484100",
-      "price": 10.99,
-      "quantity": 5,
-      "published_date": "1925-04-10T00:00:00",
-      "genre": "Classic",
-      "description": "A novel about the American dream."
+      "title": "The Great Gatsby",          <br/>
+      "author": "F. Scott Fitzgerald",     <br/>
+      "isbn": "9783161484100",     <br/>
+      "price": 10.99,          <br/>
+      "quantity": 5,          <br/>
+      "published_date": "1925-04-10T00:00:00",          <br/>
+      "genre": "Classic",          <br/>
+      "description": "A novel about the American dream."     <br/>
+    }     <br/>
+  Response:          <br/>
+    201 Created-          <br/>
+     {     
+  "id": "63d0fdfd1234567890abcdef",     <br/>
+  "title": "The Great Gatsby",     <br/>
+  "author": "F. Scott Fitzgerald",     <br/>
+  "isbn": "9783161484100",          <br/>
+  "price": 10.99,          <br/>
+  "quantity": 5,          <br/>
+  "published_date": "1925-04-10T00:00:00",          <br/>
+  "genre": "Classic",     <br/>
+  "description": "A novel about the American dream.",     <br/>
+  "created_at": "2025-01-01T12:00:00",          <br/>
+  "updated_at": "2025-01-01T12:00:00"          <br/>
     }
-  Response:
-    201 Created-
+<br/>
+4. Update Book details by "id"-          <br/>
+     PUT /api/books/{id}               <br/>
+   Description: Updates the details of a specific book.          <br/>
+   Request Body:          <br/>
+     You can update any field(s). For example:<br/>
+     {     
+      "price": 12.99,     <br/>
+      "quantity": 10     <br/>
+     }<br/>
+   Response:<br/>
+     200 OK -<br/>
      {
-  "id": "63d0fdfd1234567890abcdef",
-  "title": "The Great Gatsby",
-  "author": "F. Scott Fitzgerald",
-  "isbn": "9783161484100",
-  "price": 10.99,
-  "quantity": 5,
-  "published_date": "1925-04-10T00:00:00",
-  "genre": "Classic",
-  "description": "A novel about the American dream.",
-  "created_at": "2025-01-01T12:00:00",
-  "updated_at": "2025-01-01T12:00:00"
-    }
-
-4. Update Book details by "id"-
-     PUT /api/books/{id}
-   Description: Updates the details of a specific book.
-   Request Body:
-     You can update any field(s). For example:
-     {
-      "price": 12.99,
-      "quantity": 10
-     }
-   Response:
-     200 OK -
-     {
-      "id": "63d0fdfd1234567890abcdef",
-      "title": "The Great Gatsby",
-      "author": "F. Scott Fitzgerald",
-      "isbn": "9783161484100",
-      "price": 12.99,
-      "quantity": 10,
-      "published_date": "1925-04-10T00:00:00",
-      "genre": "Classic",
-      "description": "A novel about the American dream.",
-      "created_at": "2025-01-01T12:00:00",
-      "updated_at": "2025-01-20T14:00:00"
-    }
-    400 Bad Request-
+      "id": "63d0fdfd1234567890abcdef",     <br/>
+      "title": "The Great Gatsby",     <br/>
+      "author": "F. Scott Fitzgerald",     <br/>
+      "isbn": "9783161484100",     <br/>
+      "price": 12.99,     <br/>
+      "quantity": 10,     <br/>
+      "published_date": "1925-04-10T00:00:00",     <br/>
+      "genre": "Classic",     <br/>
+      "description": "A novel about the American dream.",     <br/>
+      "created_at": "2025-01-01T12:00:00",     <br/>
+      "updated_at": "2025-01-20T14:00:00"     <br/>
+    }<br/>
+    400 Bad Request-          <br/>
      {
       "detail": "No fields to update"
-     }
-    404 Not Found-
+     }<br/>
+    404 Not Found-<br/>
      {
       "detail": "Book not found"
      }
-
-5. Remove Book by "id" -
-     DELETE /api/books/{id}
-   Description: Deletes a specific book by its unique ID.
-   Response:
-     200 OK-
+<br/>
+5. Remove Book by "id" -          <br/>
+     DELETE /api/books/{id}               <br/>
+   Description: Deletes a specific book by its unique ID.     <br/>
+   Response:     <br/>
+     200 OK-     <br/>
+       {
+        "message": "Book deleted"
+       }<br/>
+     404 Not Found-     <br/>
        {
         "message": "Book deleted"
        }
-     404 Not Found-
-       {
-        "message": "Book deleted"
-       }
-
-6. Search books by title, author, or genre-
-   
+<br/>
+6. Search books by title, author, or genre- <br/>
+        GET /api/books/search               <br/>
+   Description: Search for books by title, author, or genre.<br/>
+   Response:                    <br/>
+        status code- 200 OK     <br/>
+        body-                   <br/>
+             [
+                 {
+                   "id": "63d0fdfd1234567890abcdef",<br/>
+                   "title": "The Great Gatsby",<br/>
+                   "author": "F. Scott Fitzgerald",<br/>
+                   "isbn": "9783161484100",<br/>
+                   "price": 10.99,<br/>
+                   "quantity": 5,<br/>
+                   "published_date": "1925-04-10T00:00:00",<br/>
+                   "genre": "Classic",<br/>
+                   "description": "A novel about the American dream.",<br/>
+                   "created_at": "2025-01-01T12:00:00",<br/>
+                   "updated_at": "2025-01-10T15:00:00"<br/>
+                 }
+             ]
